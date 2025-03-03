@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 export default class ProductService {
 	static async getAll() {
 		try {
-			const products = await prisma.product.findMany();
+			const products = await prisma.product.findMany({ include: { category: { omit: { id: true } } } });
 			return products;
 		} catch (error) {
 			console.error(error);

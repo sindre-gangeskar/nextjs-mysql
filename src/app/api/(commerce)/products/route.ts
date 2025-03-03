@@ -4,7 +4,7 @@ import ProductService from "@root/services/ProductService";
 export async function GET() {
 	try {
 		const products = await ProductService.getAll();
-		return NextResponse.json({ message: products.length > 0 ? "Products found" : "No products found", ...(products.length > 0 ? products : null) });
+		return NextResponse.json({ message: products.length > 0 ? "Products found" : "No products found", ...(products.length > 0 ? { products: products } : null) });
 	} catch (error) {
 		console.error(error);
 		return NextResponse.json({ message: "An internal server error has occurred while trying to retrieve products" }, { status: 500 });
@@ -26,4 +26,3 @@ export async function POST(req: NextRequest) {
 		return NextResponse.json({ message: "An internal server error has occurred while trying to create a product" }, { status: 500 });
 	}
 }
-

@@ -7,7 +7,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: number }
 		const body = await req.json();
 		const id = params.id;
 		await ProductService.update(id, body);
-		return NextResponse.json({ message: "Successfully updated product", updated: { ...body } }, { status: 200 });
+		return NextResponse.json({ message: "Successfully updated product"}, { status: 200 });
 	} catch (error) {
     console.error(error);
     
